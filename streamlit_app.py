@@ -1,55 +1,54 @@
 import streamlit as st
+from streamlit_extras.let_it_rain import rain
 
-st.set_page_config(page_title="My Streamlit Projects", layout="wide")
+# Page config
+st.set_page_config(page_title="My Streamlit Gallery", layout="wide")
 
-# Load CSS
+# Custom CSS
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-# Header
-st.markdown("""
-<div class="header">
-    <h1>✨ My Streamlit Portfolio</h1>
-    <p>Interactive apps • Data • AI • Design</p>
-</div>
-""", unsafe_allow_html=True)
+st.title("🎨 My Streamlit Projects Gallery")
+
+# Optional: A little visual effect
+rain(emoji="💻", font_size=20, falling_speed=5, animation_length="infinite")
 
 # Project data
 projects = [
     {
         "title": "AI Art Generator",
-        "desc": "Turn text prompts into unique images using diffusion models.",
+        "desc": "Create art from text prompts using diffusion models.",
         "img": "assets/project1.png",
         "url": "https://your-ai-art.streamlit.app"
     },
     {
-        "title": "Finance Dashboard",
-        "desc": "Visualize and analyze market trends in real-time.",
+        "title": "Stock Dashboard",
+        "desc": "Interactive stock visualization with live data.",
         "img": "assets/project2.png",
         "url": "https://your-stock.streamlit.app"
     },
     {
-        "title": "Chatbot Assistant",
-        "desc": "Conversational AI built with Streamlit + LangChain.",
+        "title": "Chatbot Interface",
+        "desc": "Conversational AI built with LangChain and Streamlit.",
         "img": "assets/project3.png",
         "url": "https://your-chatbot.streamlit.app"
     },
 ]
 
-# Gallery layout
+# Animated cards
 cols = st.columns(3)
 for i, project in enumerate(projects):
     with cols[i % 3]:
         st.markdown(
             f"""
-            <div class="card" onclick="window.open('{project['url']}', '_blank')">
-                <div class="card-image" style="background-image: url('{project['img']}');"></div>
+            <div class="card">
+                <img src="{project['img']}" class="card-img">
                 <div class="card-content">
                     <h3>{project['title']}</h3>
                     <p>{project['desc']}</p>
-                    <div class="button">View Project 🚀</div>
+                    <a href="{project['url']}" target="_blank" class="button">View Project 🚀</a>
                 </div>
             </div>
             """,
-            unsafe_allow_html=True
+            unsafe_allow_html=True,
         )
