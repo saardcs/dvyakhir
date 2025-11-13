@@ -1,17 +1,19 @@
 import streamlit as st
 import base64
+from streamlit_extras.carousel import carousel
 
 st.set_page_config(page_title="My Streamlit Projects", layout="wide")
 
+# --- Convert image to base64 ---
 def get_base64_image(img_path):
     with open(img_path, "rb") as f:
-        data = f.read()
-    return base64.b64encode(data).decode()
-# Load CSS
+        return base64.b64encode(f.read()).decode()
+
+# --- Load CSS ---
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-# Header
+# --- Header ---
 st.markdown("""
 <div class="header">
     <h1>🎨 My Streamlit Portfolio</h1>
@@ -19,7 +21,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Projects
+# --- Projects ---
 projects = [
     {
         "title": "AI Art Generator",
@@ -41,18 +43,26 @@ projects = [
     },
 ]
 
-# Gallery
-cols = st.columns(3)
-for i, project in enumerate(projects):
-    with cols[i % 3]:
-        img_base64 = get_base64_image(project["img"])
-        st.markdown(f"""
-        <div class="card">
-            <img src="data:image/png;base64,{img_base64}" class="card-img">
-            <div class="card-overlay">
-                <h3>{project['title']}</h3>
-                <p>{project['desc']}</p>
-                <a href="{project['url']}" target="_blank" class="button">View Project 🚀</a>
-            </div>
+# --- Prepare carousel items with overlay HTML ---
+carousel_items = []
+for project in projects:
+    img_base64 = get_base64_image(project["img"])
+    html = f"""
+    <div class="carousel-card">
+        <img src="data:image/png;base64,{img_base64}" class="card-img">
+        <div class="card-overlay">
+            <h3>{project['title']}</h3>
+            <p>{project['desc']}</p>
+            <a href="{project['url']}" target="_blank" class="button">View Project 🚀</a>
         </div>
-        """, unsafe_allow_html=True)
+    </div>
+    """
+    carousel_items.append({"image": html, "caption": ""})  # caption empty; overlay handles it
+
+# --- Display carousel ---
+carousel(
+    carousel_items,
+    height=450,
+    auto_play=False,
+    hide_indicators=False
+)
