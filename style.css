@@ -1,42 +1,59 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0e1117;
+  color: #fafafa;
+}
+
+.header {
+  text-align: center;
+  padding: 2rem 0;
+}
+
 .card {
-  background: #ffffff10;
+  position: relative;
+  height: 300px;
   border-radius: 15px;
   overflow: hidden;
-  transition: all 0.3s ease-in-out;
-  text-align: center;
-  padding: 1rem;
-  margin: 1rem 0;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  margin: 1.5rem 0;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-  transform: scale(1.05);
-  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-  color: white;
+  transform: translateY(-8px);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.3);
 }
 
-.card-img {
+.card-image {
   width: 100%;
-  border-radius: 10px;
-  transition: transform 0.3s ease-in-out;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.8);
+  transition: filter 0.4s ease;
 }
 
-.card:hover .card-img {
-  transform: scale(1.05);
+.card:hover .card-image {
+  filter: brightness(1);
 }
 
-.button {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: #fff;
-  color: #2575fc;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  width: 100%;
+  padding: 1rem;
   transition: all 0.3s ease;
 }
 
-.button:hover {
-  background: #2575fc;
-  color: #fff;
+.card-overlay h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.card-overlay p {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #ddd;
 }
