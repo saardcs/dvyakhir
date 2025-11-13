@@ -14,7 +14,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Project data
+# Projects
 projects = [
     {
         "title": "AI Art Generator",
@@ -40,16 +40,13 @@ projects = [
 cols = st.columns(3)
 for i, project in enumerate(projects):
     with cols[i % 3]:
-        st.markdown(
-            f"""
+        st.markdown(f"""
             <div class="card" onclick="window.open('{project['url']}', '_blank')">
-                <div class="card-image" style="background-image: url('{project['img']}');"></div>
+                <img src="{project['img']}" class="card-img">
                 <div class="card-overlay">
                     <h3>{project['title']}</h3>
                     <p>{project['desc']}</p>
                     <div class="button">View Project 🚀</div>
                 </div>
             </div>
-            """,
-            unsafe_allow_html=True
-        )
+        """, unsafe_allow_html=True)
