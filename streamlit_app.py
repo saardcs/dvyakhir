@@ -1,54 +1,55 @@
 import streamlit as st
-from streamlit_extras.let_it_rain import rain
 
-# Page config
-st.set_page_config(page_title="My Streamlit Gallery", layout="wide")
+st.set_page_config(page_title="My Streamlit Projects", layout="wide")
 
-# Custom CSS
+# Load CSS
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-st.title("🎨 My Streamlit Projects Gallery")
-
-# Optional: A little visual effect
-rain(emoji="💻", font_size=20, falling_speed=5, animation_length="infinite")
+# Header
+st.markdown("""
+<div class="header">
+    <h1>🎨 My Streamlit Portfolio</h1>
+    <p>Beautifully crafted interactive apps built with Streamlit</p>
+</div>
+""", unsafe_allow_html=True)
 
 # Project data
 projects = [
     {
         "title": "AI Art Generator",
-        "desc": "Create art from text prompts using diffusion models.",
+        "desc": "Generate unique visuals from text prompts using diffusion models.",
         "img": "assets/project1.png",
         "url": "https://your-ai-art.streamlit.app"
     },
     {
-        "title": "Stock Dashboard",
-        "desc": "Interactive stock visualization with live data.",
+        "title": "Financial Dashboard",
+        "desc": "Explore live market analytics and trends with interactive charts.",
         "img": "assets/project2.png",
         "url": "https://your-stock.streamlit.app"
     },
     {
-        "title": "Chatbot Interface",
-        "desc": "Conversational AI built with LangChain and Streamlit.",
+        "title": "Chatbot Assistant",
+        "desc": "Conversational AI interface powered by LangChain and Streamlit.",
         "img": "assets/project3.png",
         "url": "https://your-chatbot.streamlit.app"
     },
 ]
 
-# Animated cards
+# Gallery
 cols = st.columns(3)
 for i, project in enumerate(projects):
     with cols[i % 3]:
         st.markdown(
             f"""
-            <div class="card">
-                <img src="{project['img']}" class="card-img">
-                <div class="card-content">
+            <div class="card" onclick="window.open('{project['url']}', '_blank')">
+                <div class="card-image" style="background-image: url('{project['img']}');"></div>
+                <div class="card-overlay">
                     <h3>{project['title']}</h3>
                     <p>{project['desc']}</p>
-                    <a href="{project['url']}" target="_blank" class="button">View Project 🚀</a>
+                    <div class="button">View Project 🚀</div>
                 </div>
             </div>
             """,
-            unsafe_allow_html=True,
+            unsafe_allow_html=True
         )
