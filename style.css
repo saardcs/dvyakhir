@@ -1,27 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
 body {
   font-family: 'Inter', sans-serif;
-  background: #0e1117;
-  color: #fafafa;
+  background: radial-gradient(circle at 20% 20%, #0d0d1a 0%, #0a0a0f 100%);
+  color: #f5f5f5;
 }
 
 .header {
   text-align: center;
-  padding: 2rem 0;
+  padding: 3rem 0 2rem;
+}
+
+.header h1 {
+  font-weight: 600;
+  font-size: 2.3rem;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header p {
+  color: #ccc;
+  font-size: 1rem;
 }
 
 .card {
   position: relative;
-  height: 300px;
+  height: 330px;
   border-radius: 15px;
   overflow: hidden;
+  background: #ffffff10;
   margin: 1.5rem 0;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 15px 30px rgba(90, 70, 255, 0.4);
 }
 
 .card-image {
@@ -29,31 +46,51 @@ body {
   height: 100%;
   background-size: cover;
   background-position: center;
+  transition: transform 0.4s ease, filter 0.4s ease;
   filter: brightness(0.8);
-  transition: filter 0.4s ease;
 }
 
 .card:hover .card-image {
+  transform: scale(1.1);
   filter: brightness(1);
 }
 
-.card-overlay {
+.card-content {
   position: absolute;
   bottom: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
   width: 100%;
   padding: 1rem;
+  background: linear-gradient(0deg, rgba(0,0,0,0.8), transparent);
+  transition: background 0.4s ease;
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin: 0.5rem 0 1rem;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   transition: all 0.3s ease;
 }
 
-.card-overlay h3 {
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-.card-overlay p {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  color: #ddd;
+.card:hover .button {
+  background: white;
+  color: #2575fc;
+  transform: scale(1.05);
 }
