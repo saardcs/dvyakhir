@@ -1,0 +1,42 @@
+.card {
+  background: #ffffff10;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.card:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+}
+
+.card-img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover .card-img {
+  transform: scale(1.05);
+}
+
+.button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  color: #2575fc;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background: #2575fc;
+  color: #fff;
+}
