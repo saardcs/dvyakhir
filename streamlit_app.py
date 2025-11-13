@@ -47,12 +47,12 @@ for i, project in enumerate(projects):
     with cols[i % 3]:
         img_base64 = get_base64_image(project["img"])
         st.markdown(f"""
-        <div class="card" onclick="window.open('{project['url']}', '_blank')">
+        <div class="card">
             <img src="data:image/png;base64,{img_base64}" class="card-img">
             <div class="card-overlay">
                 <h3>{project['title']}</h3>
                 <p>{project['desc']}</p>
-                <div class="button">View Project 🚀</div>
+                <a href="{project['url']}" target="_blank" class="button">View Project 🚀</a>
             </div>
         </div>
         """, unsafe_allow_html=True)
