@@ -1,7 +1,12 @@
 import streamlit as st
+import base64
 
 st.set_page_config(page_title="My Streamlit Projects", layout="wide")
 
+def get_base64_image(img_path):
+    with open(img_path, "rb") as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
 # Load CSS
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
@@ -40,13 +45,14 @@ projects = [
 cols = st.columns(3)
 for i, project in enumerate(projects):
     with cols[i % 3]:
+        img_base64 = get_base64_image(project["img"])
         st.markdown(f"""
-            <div class="card" onclick="window.open('{project['url']}', '_blank')">
-                <img src="{project['img']}" class="card-img">
-                <div class="card-overlay">
-                    <h3>{project['title']}</h3>
-                    <p>{project['desc']}</p>
-                    <div class="button">View Project 🚀</div>
-                </div>
+        <div class="card" onclick="window.open('{project['url']}', '_blank')">
+            <img src="data:image/png;base64,{img_base64}" class="card-img">
+            <div class="card-overlay">
+                <h3>{project['title']}</h3>
+                <p>{project['desc']}</p>
+                <div class="button">View Project 🚀</div>
             </div>
+        </div>
         """, unsafe_allow_html=True)
